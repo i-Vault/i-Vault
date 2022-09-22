@@ -51,25 +51,26 @@ contract iVault is iAuth, IRECEIVE {
         teamDonationMultiplier = uint(_m);
     }
 
-    function setCommunity(address payable _communityWallet) public authorized() returns(bool) {
-        require(address(_community) == _msgSender());
-        coinAmountOwed[address(_communityWallet)] += coinAmountOwed[address(_community)];
-        coinAmountOwed[address(_community)] = 0;
-        _community = payable(_communityWallet);
-        (bool transferred) = transferAuthorization(address(_msgSender()), address(_communityWallet));
-        assert(transferred==true);
+    function alterReceivers(address payable _alterWallet) public authorized() returns(bool) {
+        bool transferred;
+        if(address(_community) == _msgSender()) {
+            require(address(_community) == _msgSender());
+            coinAmountOwed[address(_alterWallet)] += coinAmountOwed[address(_community)];
+            coinAmountOwed[address(_community)] = 0;
+            _community = payable(_alterWallet);
+            (transferred) = transferAuthorization(address(_msgSender()), address(_alterWallet));
+            assert(transferred==true);
+        } else {
+            require(address(_development) == _msgSender());
+            coinAmountOwed[address(_alterWallet)] += coinAmountOwed[address(_development)];
+            coinAmountOwed[address(_development)] = 0;
+            _development = payable(_alterWallet);
+            (transferred) = transferAuthorization(address(_msgSender()), address(_alterWallet));
+            assert(transferred==true);
+        }
         return transferred;
     }
 
-    function setDevelopment(address payable _developmentWallet) public authorized() returns(bool) {
-        require(address(_development) == _msgSender());
-        coinAmountOwed[address(_developmentWallet)] += coinAmountOwed[address(_development)];
-        coinAmountOwed[address(_development)] = 0;
-        _development = payable(_developmentWallet);
-        (bool transferred) = transferAuthorization(address(_msgSender()), address(_developmentWallet));
-        assert(transferred==true);
-        return transferred;
-    }
 
     function coinDeposit(uint256 amountETH) internal returns(bool) {
         uint ETH_liquidity = amountETH;

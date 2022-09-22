@@ -77,7 +77,7 @@ Kekchain (KEK) on GeckoTerminal: https://www.geckoterminal.com/eth/pools/0x4735e
 # LICENSE(s)
 The primary license for i-Vault is the Business Source License 1.1 (BUSL-1.1), see LICENSE. However, some files are dual licensed under MIT:
 
-Some files here, and all files in interfaces/ may also be licensed under MIT (as indicated in their SPDX headers), see interfaces/LICENSE
+Some files here such as iAuth, and all files in interfaces/ may also be licensed under MIT (as indicated in their SPDX headers), see interfaces/LICENSE. <br />
 If you would like to make use of this repository or **most of it's contracts commercialy, kindly consider donating any coin or token to our wallets. <br />
 Partnerships, and grants for commercial licenses will be considered for all donors. <br />
 All proceeds fund our research and development cohort, and support alt-ethereum expansion in the EVM space. <br />

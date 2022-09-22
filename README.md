@@ -59,7 +59,7 @@ Including many features such as:
 - **synced**: enforce iVault token balance is synchronized as a pre-transfer out correction. (ex. someone sent token to the contract, and did not call deposit)
 - **transfer**: splits and transfers out native ether/KEK to an alternate receiver address (ex. community wants to draw native coin ether/KEK from an iVault to a different address than the preset variable.
 
-**SHOUT OUT TO OUR SUPPORTERS!**
+**SHOUT OUT TO OUR SPONSORS & SUPPORTERS!** <br />
 Huge thanks to Kekchain for supporting this R&D! <br />
 Visit [Kekchain.com](https://Kekchain.com) <br />
 Join [Kekchain Telegram](https://t.me/Kekchain) <br />

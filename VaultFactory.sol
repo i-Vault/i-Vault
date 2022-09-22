@@ -193,6 +193,7 @@ contract VaultFactory is iAuth, IVAULT {
             if(safeAddr(vaultMap[n]) == true){
                 if(isWrapTx){
                     wrapVault(n);
+                    continue;
                 } else {
                     unWrapVault(n);
                 }
@@ -206,6 +207,7 @@ contract VaultFactory is iAuth, IVAULT {
                     } else {
                         unWrapVault(n);
                     }
+                    continue;
                 }
                 break;
             }

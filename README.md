@@ -59,6 +59,16 @@ Including many features such as:
 - **synced**: enforce iVault token balance is synchronized as a pre-transfer out correction. (ex. someone sent token to the contract, and did not call deposit)
 - **transfer**: splits and transfers out native ether/KEK to an alternate receiver address (ex. community wants to draw native coin ether/KEK from an iVault to a different address than the preset variable.
 
+**BIG THANKS TO OUR SUPPORTERS!**
+Huge thanks to Kekchain for supporting this R&D!
+Visit [Kekchain.com](https://Kekchain.com)
+Join [Kekchain Telegram](https://t.me/Kekchain)
+Go-Kekchain native KEK fungible coin (source-code): https://github.com/kek-chain/go-kekchain
+KEK (ERC20) contract address (ethereum): ```0x67954768e721fad0f0f21e33e874497c73ed6a82``` 
+Kekchain (KEK) Coingecko: https://www.coingecko.com/en/coins/kekchain
+Kekchain (KEK) on CoinMarketCap: https://coinmarketcap.com/currencies/kekchain/
+Kekchain (KEK) on GeckoTerminal: https://www.geckoterminal.com/eth/pools/0x4735eb2b143a395b97453dbb73b15fa6c46c4d3d
+
 
 **MORE FEATURES COMING SOON!** 
 

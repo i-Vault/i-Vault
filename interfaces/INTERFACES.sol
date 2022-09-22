@@ -38,7 +38,7 @@ interface IRECEIVE {
     function withdraw() external returns (bool);
     function tokenizeWETH() external returns (bool);
     function withdrawToken(address token) external returns (bool);
-    function split(uint liquidity, address tok) external view returns(uint,uint,uint,address);
+    function split(uint liquidity) external view returns(uint,uint,uint);
     function setCommunity(address payable _communityWallet) external returns(bool);
     function setDevelopment(address payable _developmentWallet) external returns(bool);
     function vaultDebt(address vault) external view returns(uint,uint,uint,uint,uint,uint,uint);

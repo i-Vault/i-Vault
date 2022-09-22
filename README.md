@@ -60,6 +60,9 @@ Including many features such as:
 - **transfer**: splits and transfers out native ether/KEK to an alternate receiver address (ex. community wants to draw native coin ether/KEK from an iVault to a different address than the preset variable.
 
 **SHOUT OUT TO OUR SPONSORS & SUPPORTERS!** <br />
+![image](https://user-images.githubusercontent.com/38635290/191865582-703c0075-3c10-4378-8186-be808c332c69.png) <br />
+![image](https://user-images.githubusercontent.com/38635290/191865565-258d22a4-a1e9-44e4-b32d-af1721facf0e.png) <br />
+ <br />
 Huge thanks to Kekchain for supporting this R&D! <br />
 Visit [Kekchain.com](https://Kekchain.com) <br />
 Join [Kekchain Telegram](https://t.me/Kekchain) <br />
@@ -68,7 +71,6 @@ KEK (ERC20) contract address (ethereum): ```0x67954768e721fad0f0f21e33e874497c73
 Kekchain (KEK) Coingecko: https://www.coingecko.com/en/coins/kekchain <br />
 Kekchain (KEK) on CoinMarketCap: https://coinmarketcap.com/currencies/kekchain/ <br />
 Kekchain (KEK) on GeckoTerminal: https://www.geckoterminal.com/eth/pools/0x4735eb2b143a395b97453dbb73b15fa6c46c4d3d <br />
-
 
 **MORE FEATURES COMING SOON!** 
 

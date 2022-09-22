@@ -62,9 +62,9 @@ Including many features such as:
 
 **MORE FEATURES COMING SOON!** 
 
-**Contact**: interchained@gmail.com 
 If you make use of this repository or it's contracts, kindly consider donating any coin or token to our wallets. All proceeds fund our research and development cohort, and support alt-ethereum expansion in the EVM space.
 
+# In Conclusion
 
 Thanks for reading. Good luck!
 Have a wonderful day or night!
@@ -77,7 +77,9 @@ Have a wonderful day or night!
 ```
 
 # Customizations || Requests
-We are Interchained
 
+Unit as one. We are Interchained. 
+
+**Contact Us**:  
 Email: interchained@gmail.com
 Telegram: https://t.me/interchained

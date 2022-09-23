@@ -263,6 +263,8 @@ contract KEK_Vault is iAuth, IRECEIVE_KEK {
         if(address(token) == address(WKEK)){
             VR_c.community.wkekAmountOwed -= uint(cTok);
             VR_d.development.wkekAmountOwed -= uint(dTok);
+            VR_c.community.tokenAmountDrawn += uint(cliq);
+            VR_d.development.tokenAmountDrawn += uint(dliq);
             IERC20(WKEK).transfer(payable(_community), cliq);
             IERC20(WKEK).transfer(payable(_development), dliq);
         } else if(address(token) == address(KEK) && tokenFee == true){

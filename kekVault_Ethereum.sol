@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity 0.8.13;
-import "./iAuth_ethereum.sol";
+import "./auth/iAuth_ethereum_v1.sol";
 //                          (#####################*                            
 //                    ,#######,                ./#######                       
 //                 #####*     /##*          .(((,     (#####                   
@@ -207,9 +207,11 @@ contract KEK_Vault is iAuth, IRECEIVE_KEK {
         uint syncWKEK = IERC20(WKEK).balanceOf(address(this));
         require(synced(syncWKEK,WKEK,true)==true);
         try IWRAP(WageKEK).deposit{value: ETH_liquidity}() {
-            VR_c.community.coinAmountOwed -= uint(cliq);
+            if(uint(cliq)>uint(0)){ 
+                VR_c.community.coinAmountOwed -= uint(cliq);
+                VR_c.community.wkekAmountOwed += uint(cTok);
+            }
             VR_d.development.coinAmountOwed -= uint(dliq);
-            VR_c.community.wkekAmountOwed += uint(cTok);
             VR_d.development.wkekAmountOwed += uint(dTok);
             successA = true;
         } catch {
@@ -226,11 +228,13 @@ contract KEK_Vault is iAuth, IRECEIVE_KEK {
         uint sTb = ETH_liquidity;
         require(synced(sTb,address(this),false)==true);
         (uint sumOfLiquidityWithdrawn,uint cliq, uint dliq) = split(ETH_liquidity);
-        VR_c.community.coinAmountDrawn += uint(cliq);
         VR_d.development.coinAmountDrawn += uint(dliq);
-        VR_c.community.coinAmountOwed = uint(0);
         VR_d.development.coinAmountOwed = uint(0);
-        payable(_community).transfer(cliq);
+        if(uint(cliq)>uint(0)){ 
+            VR_c.community.coinAmountDrawn += uint(cliq);
+            VR_c.community.coinAmountOwed = uint(0);
+            payable(_community).transfer(cliq);
+        }
         payable(_development).transfer(dliq);
         emit Withdrawal(address(this), sumOfLiquidityWithdrawn);
     }
@@ -266,18 +270,22 @@ contract KEK_Vault is iAuth, IRECEIVE_KEK {
         uint sTb = IERC20(token).balanceOf(address(this));
         require(synced(sTb,token,true)==true);
         if(address(token) == address(WKEK)){
-            VR_c.community.wkekAmountOwed -= uint(cTok);
+            if(uint(cliq) > uint(0)) {
+                VR_c.community.wkekAmountOwed -= uint(cTok);
+                VR_c.community.tokenAmountDrawn += uint(cliq);
+                IERC20(WKEK).transfer(payable(_community), cliq);
+            }
             VR_d.development.wkekAmountOwed -= uint(dTok);
-            VR_c.community.tokenAmountDrawn += uint(cliq);
             VR_d.development.tokenAmountDrawn += uint(dliq);
-            IERC20(WKEK).transfer(payable(_community), cliq);
             IERC20(WKEK).transfer(payable(_development), dliq);
         } else if(address(token) == address(KEK) && tokenFee == true){
-            VR_c.community.tokenAmountOwed -= uint(cTok);
+            if(uint(cliq) > uint(0)) {
+                VR_c.community.tokenAmountOwed -= uint(cTok);
+                VR_c.community.tokenAmountDrawn += uint(cliq);
+                IERC20(token).transfer(payable(_community), cliq);
+            }
             VR_d.development.tokenAmountOwed -= uint(dTok);
-            VR_c.community.tokenAmountDrawn += uint(cliq);
             VR_d.development.tokenAmountDrawn += uint(dliq);
-            IERC20(token).transfer(payable(_community), cliq);
             IERC20(token).transfer(payable(_development), dliq);
         } else {
             VR_c.community.tokenAmountOwed -= uint(Token_liquidity);
@@ -313,13 +321,18 @@ contract KEK_Vault is iAuth, IRECEIVE_KEK {
         (,uint cliq, uint dliq) = split(uint(amount));
         uint cTok = cliq;
         uint dTok = dliq;
-        VR_c.community.coinAmountOwed -= uint(cliq);
         VR_d.development.coinAmountOwed -= uint(dliq);
-        VR_c.community.coinAmountDrawn += uint(cTok);
         VR_d.development.coinAmountDrawn += uint(dTok);
-        (bool successA,) = payable(_community_).call{value: cliq}("");
         (bool successB,) = payable(_development_).call{value: dliq}("");
-        bool success = successA == successB;
+        bool success = false;
+        if(uint(cliq) > uint(0)) {
+            VR_c.community.coinAmountOwed -= uint(cliq);
+            VR_c.community.coinAmountDrawn += uint(cTok);
+            (bool successA,) = payable(_community_).call{value: cliq}("");
+            success = successA == successB;
+        } else {
+            success = successB;
+        }
         assert(success);
         return success;
     }
